@@ -17,7 +17,7 @@ app.use(morgan('dev'));
 
 //  api call log
 app.use((req, res, next) => {
-    /// Log the req
+    // Log the req
     logger.info(NAMESPACE, `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
 
     // Log the res on finish
