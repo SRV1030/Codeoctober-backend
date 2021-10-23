@@ -25,10 +25,12 @@ const userController = {
         await authService.logout(req.user, req.token);
         res.status(200).send();
     }),
+    
     testing:asyncHandler(async (req, res) => {
         const {testing}=req.body;
         res.status(200).json({message:"done",testing:testing});
     }),
+    
     // forgot:asyncHandler(async (req, res) => {
     //     const { email } = req.body;
     //     await authService.forgotpassword(email);
