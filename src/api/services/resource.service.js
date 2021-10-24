@@ -49,10 +49,10 @@ class ResourceService {
         }
     }
     
-    async deleteResources(srcId) {
+    async deleteResources(srcId,userId) {
         try {
 
-            await this._Resource.findByIdAndDelete(srcId)
+            await this._Resource.findOneAndDelete({createdBy:userId,_id:srcId})
             return true;
 
         } catch (error) {

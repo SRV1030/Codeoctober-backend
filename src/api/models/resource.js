@@ -27,9 +27,9 @@ const resourceSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref:"Review"
     }],
-    articles: [{String}],
+    articles: [String],
     visibility: Boolean,
-	Domain: [{String}],
+	Domain: [String],
 
 });
 

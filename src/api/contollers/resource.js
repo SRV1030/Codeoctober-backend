@@ -42,7 +42,7 @@ const resourceController = {
   // delete
   deleteResources: asyncHandler(async (req, res) => {
     const { srcId } = req.params;
-    const reSrc = await resourceService.deleteResources(srcId);
+    const reSrc = await resourceService.deleteResources(req.user,srcId);
     res.status(200).json({ message: "Deleted  successfully", data: reSrc });
   }),
 };
