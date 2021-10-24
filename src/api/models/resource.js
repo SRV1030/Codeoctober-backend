@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const resourceSchema = new mongoose.Schema({
     createdBy:{
-        type:mongoose.Type.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref:"User"
     },
     title: {
@@ -24,7 +24,7 @@ const resourceSchema = new mongoose.Schema({
         default:0
     },
     review :[{
-        type:mongoose.Type.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref:"Review"
     }],
     articles: [{String}],

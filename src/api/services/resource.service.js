@@ -1,9 +1,8 @@
 
 
 class ResourceService {
-    constructor({ ResourceModel}) {
-        this._Resource = ResourceModel;
-
+    constructor({ resourceModel}) {
+        this._Resource = resourceModel;
     }
     async getAllResourcesUser(userId) {
         try {
@@ -14,7 +13,16 @@ class ResourceService {
             throw new Error(error.message)
         }
     }
-    async getOneResourcesUser(userId,reSrc) {
+    async getAllPublicResources() {
+        try {
+            const resources =await this._Resource.find({visibility:true});
+            return resources
+        } catch (error) {
+            console.error(error);
+            throw new Error(error.message)
+        }
+    }
+    async getOneResourcesUser(reSrc) {
         try {
             const resources =await this._Resource.findById(reSrc).populate("review");
             return resources
