@@ -23,10 +23,10 @@ const resourceSchema = new mongoose.Schema({
         type: Number,
         default:0
     },
-    review :  {
+    review :[{
         type:mongoose.Type.ObjectId,
         ref:"Review"
-    },
+    }],
     articles: [{String}],
     visibility: Boolean,
 	Domain: [{String}],

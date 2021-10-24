@@ -3,6 +3,7 @@
 class ResourceService {
     constructor({ ResourceModel}) {
         this._Resource = ResourceModel;
+
     }
     async getAllResourcesUser(userId) {
         try {
@@ -13,9 +14,9 @@ class ResourceService {
             throw new Error(error.message)
         }
     }
-    async getOneResourcesUser(userId) {
+    async getOneResourcesUser(userId,reSrc) {
         try {
-            const resources =await this._Resource.find({createdBy:userId});
+            const resources =await this._Resource.findById(reSrc).populate("review");
             return resources
         } catch (error) {
             console.error(error);
@@ -42,10 +43,13 @@ class ResourceService {
     
     async deleteResources(srcId) {
         try {
+
             await this._Resource.findByIdAndDelete(srcId)
             return true;
+
         } catch (error) {
             console.error(error);
+            throw new Error(error.message)
         }
     }
 
