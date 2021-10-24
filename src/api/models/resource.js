@@ -28,8 +28,15 @@ const resourceSchema = new mongoose.Schema({
         ref:"Review"
     }],
     articles: [String],
-    visibility: Boolean,
+    visibility: {
+        type:Boolean,
+        default:true
+    },
 	Domain: [String],
+    // Notes: [{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref:"Note"
+    // }],
 
 });
 

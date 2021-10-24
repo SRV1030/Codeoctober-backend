@@ -22,6 +22,7 @@ const resourceController = {
     res.status(200).json({ message: "created successfully", data: reSrc });
   }),
 
+  
 
   // get
   getAllResourcesUser: asyncHandler(async (req, res) => {

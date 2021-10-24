@@ -1,3 +1,4 @@
+// const NotesModel=require("../models/notes")
 
 
 class ResourceService {
@@ -6,7 +7,7 @@ class ResourceService {
     }
     async getAllResourcesUser(userId) {
         try {
-            const resources =await this._Resource.find({createdBy:userId});
+            const resources =await this._Resource.find({createdBy:userId}).populate("createdBy");
             return resources
         } catch (error) {
             console.error(error);
@@ -15,7 +16,7 @@ class ResourceService {
     }
     async getAllPublicResources() {
         try {
-            const resources =await this._Resource.find({visibility:true});
+            const resources =await this._Resource.find({visibility:true}).populate("createdBy");;
             return resources
         } catch (error) {
             console.error(error);
@@ -24,13 +25,15 @@ class ResourceService {
     }
     async getOneResourcesUser(reSrc) {
         try {
-            const resources =await this._Resource.findById(reSrc).populate("review");
+            const resources =await this._Resource.findById(reSrc).populate("createdBy");
             return resources
         } catch (error) {
             console.error(error);
             throw new Error(error.message)
         }
     }
+
+    // post 
     async addResources(userId,title,links,articles,visibility,Domain) {
         try {
             const reSrc= await  this._Resource.create({
@@ -49,6 +52,29 @@ class ResourceService {
         }
     }
     
+    // async addNotes(userId,reSrc,Content) {
+    //     try {
+    //         const notes =await NotesModel.create({
+    //             createdBy:userId,
+    //             Content
+    //         })
+    //         console.log(notes,"notes")
+            // const reSrc= await  this._Resource.findOneAndUpdate(reSrc,{
+            //     $push: {
+            //         Notes: {
+            //             notes
+            //         }
+            //     }  
+            // })
+            // return reSrc;
+
+    //     } catch (error) {
+    //         console.error(error);
+    //         throw new Error(error.message)
+    //     }
+    // }
+
+    // delete
     async deleteResources(srcId,userId) {
         try {
 
