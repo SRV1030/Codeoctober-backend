@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
-const review_model =require("./review")
+
 const resourceSchema = new mongoose.Schema({
+    createdBy:{
+        type:mongoose.Type.ObjectId,
+        ref:"User"
+    },
     title: {
         type: String,
         require: true,
@@ -17,8 +21,12 @@ const resourceSchema = new mongoose.Schema({
     ],
     overallRating: {
         type: Number,
+        default:0
     },
-    review :  review_model,
+    review :  {
+        type:mongoose.Type.ObjectId,
+        ref:"Review"
+    },
     articles: [{String}],
     visibility: Boolean,
 	Domain: [{String}],
