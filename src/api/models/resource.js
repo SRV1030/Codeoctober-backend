@@ -5,6 +5,10 @@ const resourceSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref:"User"
     },
+    track:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"User"
+    },
     title: {
         type: String,
         require: true,
@@ -19,14 +23,14 @@ const resourceSchema = new mongoose.Schema({
             }
         }
     ],
-    overallRating: {
-        type: Number,
-        default:0
-    },
-    review :[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:"Review"
-    }],
+    // overallRating: {
+    //     type: Number,
+    //     default:0
+    // },
+    // review :[{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref:"Review"
+    // }],
     articles: [String],
     visibility: {
         type:Boolean,

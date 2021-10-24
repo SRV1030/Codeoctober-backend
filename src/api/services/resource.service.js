@@ -1,4 +1,4 @@
-// const NotesModel=require("../models/notes")
+const TrackModel=require("../models/track")
 
 
 class ResourceService {
@@ -33,16 +33,32 @@ class ResourceService {
         }
     }
 
+
+    async getResourcesTrack(track) {
+        try {
+            const resources =await this._Resource.find({track:track}).populate("createdBy");
+            return resources
+        } catch (error) {
+            console.error(error);
+            throw new Error(error.message)
+        }
+    }
     // post 
-    async addResources(userId,title,links,articles,visibility,Domain) {
+    async addResources(userId,title,links,articles,visibility,Domain,track) {
         try {
             const reSrc= await  this._Resource.create({
                 createdBy:userId,
+                track,
                 title,
                 links,
                 articles,
                 Domain,
                 visibility
+            })
+            await  TrackModel.findOneAndUpdate(track,{
+                $push: {
+                    resoources: reSrc._id 
+                }  
             })
             return reSrc;
 
@@ -75,10 +91,11 @@ class ResourceService {
     // }
 
     // delete
-    async deleteResources(srcId,userId) {
+    async deleteResources(userId,srcId) {
         try {
 
-            await this._Resource.findOneAndDelete({createdBy:userId,_id:srcId})
+            const result =await this._Resource.findOneAndDelete({createdBy:userId,_id:srcId})
+            console.log(result,"resul")
             return true;
 
         } catch (error) {

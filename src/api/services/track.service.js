@@ -22,7 +22,8 @@ class TrackService {
     async createTrack(data) {
         try {
             const track = new Tracks(data);
-            return await track.save();
+             await track.save();
+             return track;
         } catch (error) {
             console.error(error);
         }

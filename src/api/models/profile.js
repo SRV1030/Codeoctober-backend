@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
+
 const profileSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -20,6 +21,7 @@ const profileSchema = new mongoose.Schema({
         required: false,
     }
 });
+
 
 profileSchema.pre("save", async function (next) {
     var user = this;

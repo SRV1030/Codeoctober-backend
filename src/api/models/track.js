@@ -16,18 +16,21 @@ const trackSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
-    resoources: {
-        type: [mongoose.Schema.Types.ObjectId],
+    resoources: [{
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Resource",
+    }],
+    // overallRating: {
+    //     type: Number,
+    // },
+    // reviews: {
+    //     type: [mongoose.Schema.Types.ObjectId],
+    //     ref: "Review",
+    // },
+    visibility:{
+        type:Boolean,
+        default:true
     },
-    overallRating: {
-        type: Number,
-    },
-    reviews: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: "Review",
-    },
-    visibility: Boolean,
 	domain: [{
         type: String
     }],
